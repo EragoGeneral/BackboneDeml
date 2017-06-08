@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+         var todo = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                completed: false
+            }
+         });
+
+        var todo1 = new Todo();
+        console.log(todo1.get('title'));
+        console.log(todo1.get('completed'));
+
+        var todo2 = new Todo({
+            title: "Retrieved with model's get() method.",
+            completed: true
+        });
+        console.log(todo2.get('title'));
+        console.log(todo2.get('completed'));
+    </script>
+</body>
+</html>
