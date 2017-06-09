@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listen model</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var Todo = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                completed: false
+            },
+            initialize: function(){
+                console.log('This model has been initialized.');
+                this.on('change:title',function(){
+                   console.log('Title value for this model has changed.');
+                });
+            },
+            setTitle: function(newTitle){
+                this.set({title: newTitle});
+            }
+        });
+
+        var myTodo = new Todo();
+        myTodo.set('title', 'Check what\'s logged.');
+        myTodo.setTitle('Go fishing on Sunday.');
+        myTodo.set('completed', true);
+        console.log('Todo set as completed: ' + myTodo.get('completed'));
+    </script>
+</body>
+</html>

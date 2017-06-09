@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic view</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var TodoView = Backbone.View.extend({
+            tagName : 'ul',
+            className: 'container',
+            id: 'todos',
+            todoTpl: _.template("An example template"),
+            events:{
+                'dblclick label': 'edit',
+                'keypress .edit': 'updateOnEnter',
+                'blur .edit': 'close'
+            },
+            render: function () {
+                this.$el.html(this.todoTpl(this.model.toJSON()));
+                this.input = this.$('.edit');
+                return this;
+            },
+            edit: function () {
+                
+            },
+            close: function () {
+                
+            },
+            updateOnEnter: function () {
+                
+            }
+        });
+        var todoView = new TodoView();
+        console.log(todoView.el);
+
+    </script>
+</body>
+</html>

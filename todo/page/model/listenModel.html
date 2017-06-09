@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listen model</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var Todo = Backbone.Model.extend({
+            defaults: {
+                title: '',
+                completed: false
+            },
+            initialize: function(){
+                console.log('This model has been initialized.');
+                this.on('change',function(){
+                   console.log('- Values for this model have changed.');
+                });
+            }
+        });
+        var myTodo = new Todo();
+        myTodo.set('title', 'The listener is triggered whenever an attribute value changes.');
+        console.log('Title has changed: ' + myTodo.get('title'));
+
+        myTodo.set('completed', true);
+        console.log('Completed has changed: ' + myTodo.get('completed'));
+
+        myTodo.set({
+            title: 'Changing more than on attribute at the same time only triggers the listener once.',
+            completed: true
+        });
+        console.log('Title has changed: ' + myTodo.get('title'));
+    </script>
+</body>
+</html>

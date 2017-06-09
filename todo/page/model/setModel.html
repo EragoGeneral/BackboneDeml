@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set model</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var Todo = Backbone.Model.extend({
+            defaults:{
+                title: '',
+                completed: false
+            }
+        });
+
+        var myTodo = new Todo({
+            title: 'Set through instantiation.'
+        });
+        console.log('Todo title: ' + myTodo.get('title'));
+        console.log('Completed: ' + myTodo.get('completed'));
+
+        myTodo.set('title', 'Title attribute set through Model.set().');
+        console.log('Todo title: ' + myTodo.get('title'));
+        console.log('Completed: ' + myTodo.get('completed'));
+
+        myTodo.set({
+            title: "Both attributes set through Model.set().",
+            completed: true
+        });
+        console.log('Todo title: ' + myTodo.get('title'));
+        console.log('Completed: ' + myTodo.get('completed'));
+
+
+    </script>
+</body>
+</html>
