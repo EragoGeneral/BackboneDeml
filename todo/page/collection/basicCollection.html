@@ -5,6 +5,45 @@
     <title>basic collection</title>
 </head>
 <body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/underscore-min.js"></script>
+<script src="../../js/backbone-min.js"></script>
+<script type="text/javascript">
+    var Todo = Backbone.Model.extend({
+       defaults:{
+           title:'',
+           completed: false
+       }
+    });
 
+    var TodosCollection = Backbone.Collection.extend({
+        model:Todo
+    });
+
+    var a = new Todo({title: 'Go to Jamaica'}),
+        b = new Todo({title: 'Go to China'}),
+        c = new Todo({title: 'Go to Disneyland'});
+
+    var todos = new TodosCollection([a, b]);
+    console.log("Collection size:" + todos.length);
+
+    todos.add(c);
+    console.log("Collection size:" + todos.length);
+
+    todos.remove([a,b]);
+    console.log("Collection size:" + todos.length);
+
+    todos.remove(c);
+    console.log("Collection size:" + todos.length);
+
+    todos.add([a,c]);
+    console.log("Collection size:" + todos.length);
+
+    var items = new Backbone.Collection();
+    items.add([{id:1, name:"Dog", age:3}, {id:2, name: "Cat", age:2}]);
+    items.add([{id:1, name:"Bear"}]);
+    items.add([{id:2, name:"Lion"}], {merge:true});
+    console.log(JSON.stringify(items.toJSON()));
+</script>
 </body>
 </html>

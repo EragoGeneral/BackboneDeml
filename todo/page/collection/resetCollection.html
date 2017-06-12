@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic collection</title>
+</head>
+<body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/underscore-min.js"></script>
+<script src="../../js/backbone-min.js"></script>
+<script type="text/javascript">
+    var TodosCollection = new Backbone.Collection();
+    TodosCollection.add([
+        {id:1, title:'go to Jamaica', completed:false},
+        {id:2, title:'go to Chine', completed:false},
+        {id:3, title:'go to Disneyland', completed:true},
+    ]);
+
+    TodosCollection.on("add",function (model) {
+        console.log("Added " + model.get('title'));
+    });
+
+    TodosCollection.on("remove", function (model) {
+        console.log("Removed " + model.get('title'));
+    });
+    TodosCollection.on("change:completed", function (model) {
+        console.log("Completed " + model.get('title'));
+    });
+    TodosCollection.set([
+        {id:1, title:'go to Jamaica', completed:true},
+        {id:2, title:'go to Chine', completed:false},
+        {id:4, title:'go to Disney World', completed:false},
+    ]);
+
+    console.log('Collection size: ' + TodosCollection.length);
+    TodosCollection.on("reset", function () {
+        console.log("Collection reset.");
+    });
+    TodosCollection.reset([{title: 'go to Cuba.', completed: false}]);
+    console.log('Collection size: ' + TodosCollection.length);
+</script>
+</body>
+</html>

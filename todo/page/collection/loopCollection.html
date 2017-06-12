@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic collection</title>
+</head>
+<body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/underscore-min.js"></script>
+<script src="../../js/backbone-min.js"></script>
+<script type="text/javascript">
+    var Todos = new Backbone.Collection();
+    Todos.add([
+        {title:'go to Belgium.', completed:false, id:1},
+        {title:'go to China.', completed:false, id:2},
+        {title:'go to Austria.', completed:true, id:3}
+    ]);
+    Todos.forEach(function (model) {
+        console.log(model.get('title'));
+    });
+
+    var sortedByAlphabet = Todos.sortBy(function (todo) {
+        return todo.get("title").toLowerCase();
+    });
+
+    console.log("- Now sorted: ");
+    sortedByAlphabet.forEach(function (model) {
+        console.log(model.get('title'));
+    });
+
+    var count = 1;
+    console.log(Todos.map(function (model) {
+        return count++ + ". " + model.get('title');
+    }));
+
+    var maxId = Todos.max(function(model){
+       return model.id;
+    }).id;
+    console.log("maxId: " + maxId);
+
+    var minId = Todos.min(function(model){
+        return model.id;
+    }).id;
+    console.log("minId: " + minId);
+
+</script>
+</body>
+</html>

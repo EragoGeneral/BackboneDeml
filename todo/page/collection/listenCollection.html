@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic collection</title>
+</head>
+<body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/underscore-min.js"></script>
+<script src="../../js/backbone-min.js"></script>
+<script type="text/javascript">
+    var TodosCollection  = new Backbone.Collection();
+    TodosCollection.on('add', function(todo){
+       console.log("I should "+todo.get("title")+". Have I done it before? "
+               + (todo.get("completed") ? 'Yeah':"No."));
+    });
+
+    TodosCollection.add([
+        {title:'go to Jamaica', completed:false},
+        {title:'go to China', completed:false},
+        {title:'go to Disneyland', completed:true},
+    ]);
+
+    TodosCollection.on("change:title", function(model){
+       console.log("Changed my mind! I should "+model.get('title'));
+    });
+
+    TodosCollection.add([{title:'go to Jamaica', completed: false, id:3}]);
+    var myTodo = TodosCollection.get(3);
+    myTodo.set('title', 'go fishing');
+</script>
+</body>
+</html>

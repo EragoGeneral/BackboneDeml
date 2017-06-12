@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic collection</title>
+</head>
+<body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/underscore-min.js"></script>
+<script src="../../js/backbone-min.js"></script>
+<script type="text/javascript">
+    var Todo = Backbone.Model.extend({
+        title:''
+    });
+    var TodosCollection = Backbone.Collection.extend({
+        model: Todo
+    });
+
+    var myTodo = new Todo({title:'REad the whole book', id:2});
+    var todos = new TodosCollection([myTodo]);
+    var todo2 = todos.get(2);
+    console.log(todo2 === myTodo);
+
+    var todoCid = todos.get(todo2.cid);
+    console.log(todoCid === myTodo);
+
+    console.log(todo2.id);
+    console.log(todo2.cid);
+    console.log(todo2.idAttribute);
+</script>
+</body>
+</html>
