@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Off Demo</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var ourObject = {};
+        _.extend(ourObject, Backbone.Events);
+        function dancing(msg) {
+            console.log('We are dancing. ' + msg);
+        }
+        function jumping(msg){
+            console.log('We are jumping. ' + msg);
+        }
+
+        ourObject.on('move', dancing);
+        ourObject.on('move', jumping);
+
+        ourObject.trigger('move', "Yeah!");
+        ourObject.off('move',dancing);
+        ourObject.trigger('move', 'Yeah, jump, jump!');
+
+    </script>
+</body>
+</html>

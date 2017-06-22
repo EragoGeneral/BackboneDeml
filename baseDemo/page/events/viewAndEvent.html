@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View and Event</title>
+</head>
+<body>
+    <div id="todo">
+        <input type="checkbox" />
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var View = Backbone.View.extend({
+            el: '#todo',
+            events:{
+                'click [type="checkbox"]' : 'clicked'
+            },
+            initialize: function () {
+                this.$el.click(this.jqueryClicked);
+                this.on('apiEvent', this.callback);
+            },
+            clicked: function (event) {
+                console.log("event handle for " + this.el.outerHTML);
+            },
+            jqueryClicked: function (event) {
+                console.log("jQuery handle for " + this.outerHTML);
+            },
+            callback: function (eventType) {
+                console.log("event type was " + eventType);
+            }
+        });
+        var view = new View();
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Demo</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var ourObject = {};
+        _.extend(ourObject, Backbone.Events);
+        ourObject.on('dance', function (msg) {
+            console.log('We triggered ' + msg);
+        });
+
+        ourObject.trigger('dance', 'our event');
+
+    </script>
+</body>
+</html>

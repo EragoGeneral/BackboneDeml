@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listener Demo</title>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var a = _.extend({}, Backbone.Events);
+        var b = _.extend({}, Backbone.Events);
+        var c = _.extend({}, Backbone.Events);
+
+        a.listenTo(b, 'anything', function (event) {
+           console.log('anything happened');
+        });
+
+        a.listenTo(c, 'everything', function (event) {
+            console.log('everything happened');
+        });
+
+        b.trigger('anything');
+        c.trigger('everything');
+        c.trigger('anything');
+
+        a.stopListening(b, 'anything');
+        b.trigger('anything');
+        c.trigger('everything');
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

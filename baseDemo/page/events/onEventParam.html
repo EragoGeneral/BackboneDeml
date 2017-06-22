@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Demo</title>
+</head>
+<body>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/underscore-min.js"></script>
+    <script src="../../js/backbone-min.js"></script>
+    <script type="text/javascript">
+        var ourObject = {};
+        _.extend(ourObject, Backbone.Events);
+
+        function doAction(action, duration){
+            console.log('We are ' + action + ' for ' + duration);
+        }
+
+        ourObject.on('dance', doAction);
+        ourObject.on('jump', doAction);
+        ourObject.on('skip', doAction);
+
+        ourObject.trigger('dance', 'dancing', '5 minutes');
+        ourObject.trigger('dance jump skip', 'on fire', '15 minutes');
+
+    </script>
+</body>
+</html>
